@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using src.Data;
@@ -9,7 +8,6 @@ using src.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -28,7 +26,7 @@ namespace src.Services
                 PlainTextContent = message,
                 HtmlContent = message
             };
-            msg.AddTo(new EmailAddress(email, email));
+            msg.AddTo(new EmailAddress(email));
             await client.SendEmailAsync(msg);
         }
 
@@ -55,23 +53,30 @@ namespace src.Services
             if (string.IsNullOrWhiteSpace(smtpHost))
                 throw new ArgumentNullException(nameof(smtpHost), "SMTP host cannot be null or empty.");
 
-            var mailMessage = new MailMessage
+            var mailMessage = new MailMessage()
             {
                 From = new MailAddress(fromEmail, fromFullName),
                 Subject = subject,
                 Body = message,
                 IsBodyHtml = true
             };
-            mailMessage.To.Add(new MailAddress(email)); // Use 'email' instead of 'toEmail'
+            mailMessage.To.Add(new MailAddress(email));
 
             using (var smtp = new SmtpClient(smtpHost, smtpPort))
             {
                 smtp.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
                 smtp.EnableSsl = smtpSSL;
-                await smtp.SendMailAsync(mailMessage);
+                try
+                {
+                    await smtp.SendMailAsync(mailMessage);
+                }
+                catch (SmtpException ex)
+                {
+                    // Log or handle your SMTP exception here.
+                    throw; // Optionally re-throw the exception if you cannot handle it here.
+                }
             }
         }
-
 
         public async Task SendEmailLocallyAsync(bool isBodyHtml, string subject, string body, string toEmail, string fromEmail, string localDestination)
         {
@@ -80,14 +85,13 @@ namespace src.Services
                 smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
                 smtp.PickupDirectoryLocation = localDestination;
 
-                var message = new MailMessage
+                var message = new MailMessage()
                 {
                     Body = body,
                     IsBodyHtml = isBodyHtml,
                     Subject = subject,
                     From = new MailAddress(fromEmail)
                 };
-
                 message.To.Add(new MailAddress(toEmail));
                 await smtp.SendMailAsync(message);
             }
