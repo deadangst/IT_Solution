@@ -1,16 +1,16 @@
 ﻿@model ExternalLoginViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Registro";
 }
 
 <h2>@ViewData["Title"]</h2>
-<h4>Associate your @ViewData["LoginProvider"] account.</h4>
+<h4>Asocia tu cuenta @ViewData["LoginProvider"].</h4>
 <hr />
 
 <p class="text-info">
-    You've successfully authenticated with <strong>@ViewData["LoginProvider"]</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
+    Has autenticado correctamente con <strong>@ViewData["LoginProvider"]</strong>.
+    Por favor, introduce una dirección de correo electrónico y a continuación haz clic en el botón de Registro para finalizar
+    el inicio de sesión.
 </p>
 
 <div class="row">
@@ -22,7 +22,7 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Register</button>
+            <button type="submit" class="btn btn-default">Registrarse</button>
         </form>
     </div>
 </div>

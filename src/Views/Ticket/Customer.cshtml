@@ -1,13 +1,13 @@
 ﻿@model src.Models.Customer
 
 @{
-    ViewData["Title"] = "Customer";
+    ViewData["Title"] = "Cliente";
     Layout = "~/Views/Shared/_LayoutAdminlte.cshtml";
 }
 
 
-<!-- Content Header (Page header) -->
-<!-- Main content -->
+<!-- Encabezado de Contenido (encabezado de la página) -->
+<!-- Contenido Principal -->
 <section class="content">
     <div class="row">
         <div class="col-lg-10">
@@ -33,7 +33,7 @@
         <div class="col-lg-2">
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEditCustomerTicket","Ticket", new { cust = Model.customerId })')"><i class="fa fa-plus"></i> Add New Ticket</a>
+                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEditCustomerTicket","Ticket", new { cust = Model.customerId })')"><i class="fa fa-plus"></i> Añadir Nuevo Ticket</a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 
 </section>
 <!-- /.content -->
-<!--modal placeholder-->
+<!--placeholder del modal-->
 <div class="modal modal-primary fade" id="modalDefault">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -56,5 +56,3 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="~/js/views/ticket/customer.js"></script>
 }
-
-

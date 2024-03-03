@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-@{ 
+@{
     var org = ViewData["org"];
 }
 <html>
@@ -44,7 +44,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Alternar navegación</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -53,10 +53,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Product" asp-action="Index" asp-route-org="@org">Product</a></li>
-                    <li><a asp-area="" asp-controller="SupportAgent" asp-action="Index" asp-route-org="@org">Support Agent</a></li>
-                    <li><a asp-area="" asp-controller="SupportEngineer" asp-action="Index" asp-route-org="@org">Support Engineer</a></li>
-                    <li><a asp-area="" asp-controller="Customer" asp-action="Index" asp-route-org="@org">Customer</a></li>
+                    <li><a asp-area="" asp-controller="Product" asp-action="Index" asp-route-org="@org">Producto</a></li>
+                    <li><a asp-area="" asp-controller="SupportAgent" asp-action="Index" asp-route-org="@org">Agente de Soporte</a></li>
+                    <li><a asp-area="" asp-controller="SupportEngineer" asp-action="Index" asp-route-org="@org">Ingeniero de Soporte</a></li>
+                    <li><a asp-area="" asp-controller="Customer" asp-action="Index" asp-route-org="@org">Cliente</a></li>
                     <li><a asp-area="" asp-controller="Ticket" asp-action="Index" asp-route-org="@org">Ticket</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -69,8 +69,8 @@
         <footer>
             <p>&copy; 2018 - src</p>
         </footer>
-    </div>
 
+    </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

@@ -6,19 +6,19 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Iniciar sesión";
     Layout = "_LayoutAdminlteBlank";
 }
 
 @if (ViewData["error"] != null)
 {
-    <input type="hidden" id="error" value="@ViewData["error"].ToString()"/>
+    <input type="hidden" id="error" value="@ViewData["error"].ToString()" />
 }
 
 <div class="login-box-body">
-    <p class="login-box-msg"><b>Sign in to start your session</b></p>
+    <p class="login-box-msg"><b>Inicia sesión para comenzar a utilizar la aplicación</b></p>
     <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-        
+
         <div class="form-group has-feedback">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control" />
@@ -32,7 +32,7 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-7">
                 <div class="checkbox icheck">
                     <label asp-for="RememberMe">
                         <input asp-for="RememberMe" />
@@ -42,14 +42,15 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat" style="white-space: nowrap; width: auto; padding: 10px 20px;">Iniciar sesión</button>
             </div>
             <!-- /.col -->
         </div>
 
 
-        <a href="@src.MVC.Accounts.ForgotPassword.FullUrl">I forgot my password</a><br>
-        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-center">Register a new membership</a>
+
+        <a href="@src.MVC.Accounts.ForgotPassword.FullUrl">Olvidé mi contraseña</a><br>
+        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-center">Registrar una nueva membresía</a>
     </form>
 
 
@@ -60,12 +61,12 @@
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script>
-        $(document).ready(function () { 
+        $(document).ready(function () {
             var error = $('#error').val();
             if (error) {
                 ShowMessageError(error);
             }
-            
+
         });
     </script>
 }

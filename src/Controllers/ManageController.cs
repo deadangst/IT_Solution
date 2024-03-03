@@ -52,7 +52,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new IndexViewModel
@@ -79,7 +79,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var email = user.Email;
@@ -98,11 +98,11 @@ namespace src.Controllers
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                    throw new ApplicationException($"Se produjo un error inesperado al establecer el correo electrónico para el usuario con ID '{user.Id}'.");
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Su perfil ha sido actualizado";
             return RedirectToAction(nameof(Index));
         }
 
@@ -118,7 +118,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -126,7 +126,7 @@ namespace src.Controllers
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Correo electrónico de verificación enviado. Por favor, revise su correo electrónico.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -136,7 +136,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -160,7 +160,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
@@ -171,8 +171,8 @@ namespace src.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("El usuario cambió su contraseña exitosamente.");
+            StatusMessage = "Su contraseña ha sido cambiada.";
             
             return Json(new { success = true, message = StatusMessage });
         }
@@ -183,7 +183,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -209,7 +209,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID. '{_userManager.GetUserId(User)}'.");
             }
 
             var addPasswordResult = await _userManager.AddPasswordAsync(user, model.NewPassword);
@@ -220,7 +220,7 @@ namespace src.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "Su contraseña ha sido establecida.";
 
             return RedirectToAction(nameof(SetPassword));
         }
@@ -231,7 +231,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID. '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new ExternalLoginsViewModel { CurrentLogins = await _userManager.GetLoginsAsync(user) };
@@ -263,25 +263,25 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
             if (info == null)
             {
-                throw new ApplicationException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Se produjo un error inesperado al cargar la información de inicio de sesión externo para el usuario con ID '{user.Id}'.");
             }
 
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occurred adding external login for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Se produjo un error inesperado al agregar inicio de sesión externo para el usuario con ID '{user.Id}'.");
             }
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "The external login was added.";
+            StatusMessage = "El inicio de sesión externo se ha agregado.";
             return RedirectToAction(nameof(ExternalLogins));
         }
 
@@ -292,17 +292,18 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var result = await _userManager.RemoveLoginAsync(user, model.LoginProvider, model.ProviderKey);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occurred removing external login for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Se produjo un error inesperado al eliminar el inicio de sesión externo para el usuario con ID '{user.Id}'.");
             }
 
+
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "The external login was removed.";
+            StatusMessage = "El inicio de sesión externo fue eliminado.";
             return RedirectToAction(nameof(ExternalLogins));
         }
 
@@ -312,7 +313,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new TwoFactorAuthenticationViewModel
@@ -331,12 +332,12 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Unexpected error occured disabling 2FA for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Se produjo un error inesperado al desactivar la autenticación de dos factores para el usuario con ID '{user.Id}'.");
             }
 
             return View(nameof(Disable2fa));
@@ -349,16 +350,16 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occured disabling 2FA for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Se produjo un error inesperado al desactivar la autenticación de dos factores para el usuario con ID '{user.Id}'.");
             }
 
-            _logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);
+            _logger.LogInformation("El usuario con ID {UserId} ha desactivado la autenticación de dos factores.", user.Id);
             return RedirectToAction(nameof(TwoFactorAuthentication));
         }
 
@@ -368,7 +369,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new EnableAuthenticatorViewModel();
@@ -384,7 +385,7 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -401,15 +402,16 @@ namespace src.Controllers
 
             if (!is2faTokenValid)
             {
-                ModelState.AddModelError("Code", "Verification code is invalid.");
+                ModelState.AddModelError("Code", "El código de verificación no es válido.");
                 await LoadSharedKeyAndQrCodeUriAsync(user, model);
                 return View(model);
             }
 
             await _userManager.SetTwoFactorEnabledAsync(user, true);
-            _logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
+            _logger.LogInformation("El usuario con ID {UserId} ha activado la autenticación de dos factores con una aplicación de autenticación.", user.Id);
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             TempData[RecoveryCodesKey] = recoveryCodes.ToArray();
+
 
             return RedirectToAction(nameof(ShowRecoveryCodes));
         }
@@ -440,12 +442,12 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             await _userManager.SetTwoFactorEnabledAsync(user, false);
             await _userManager.ResetAuthenticatorKeyAsync(user);
-            _logger.LogInformation("User with id '{UserId}' has reset their authentication app key.", user.Id);
+            _logger.LogInformation("El usuario con ID '{UserId}' ha restablecido la clave de su aplicación de autenticación.", user.Id);
 
             return RedirectToAction(nameof(EnableAuthenticator));
         }
@@ -456,12 +458,12 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Cannot generate recovery codes for user with ID '{user.Id}' because they do not have 2FA enabled.");
+                throw new ApplicationException($"No se pueden generar códigos de recuperación para el usuario con ID '{user.Id}' porque no tienen la autenticación de dos factores habilitada.");
             }
 
             return View(nameof(GenerateRecoveryCodes));
@@ -474,16 +476,16 @@ namespace src.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Cannot generate recovery codes for user with ID '{user.Id}' as they do not have 2FA enabled.");
+                throw new ApplicationException($"No se pueden generar códigos de recuperación para el usuario con ID '{user.Id}' ya que no tienen la autenticación de dos factores habilitada.");
             }
 
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-            _logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
+            _logger.LogInformation("El usuario con ID {UserId} ha generado nuevos códigos de recuperación de 2FA.", user.Id);
 
             var model = new ShowRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
 

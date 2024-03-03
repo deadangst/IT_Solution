@@ -7,9 +7,10 @@ namespace src.Enum
 {
     public enum TaskCategory
     {
-        Call = 1,
-        Meeting = 2,
-        Demo = 3,
-        Visit = 4
+        Llamada = 1,
+        Reunión = 2,
+        Demostración = 3,
+        Visita = 4
     }
+
 }

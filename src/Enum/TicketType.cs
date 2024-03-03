@@ -7,8 +7,9 @@ namespace src.Enum
 {
     public enum TicketType
     {
-        Other = 0,
-        Problem = 1,
-        Question = 2
+        Otro = 0,
+        Problema = 1,
+        Pregunta = 2
     }
+
 }

@@ -10,17 +10,18 @@ namespace src.Enum
     {
         Other = 0,
         Monitor = 1,
-        Phone = 2,
-        Desktop = 3,
-        Laptop = 4,
-        Printer = 5,
-        [Display(Name = "Other Hardware")]
-        OtherHardware = 6,
+        Teléfono = 2,
+        Escritorio = 3,
+        Portátil = 4,
+        Impresora = 5,
+        [Display(Name = "Otro Hardware")]
+        OtroHardware = 6,
         Windows = 7,
         Word = 8,
         Excel = 9,
         Powerpoint = 10,
-        [Display(Name = "Other Software")]
-        OtherSoftware = 11
+        [Display(Name = "Otro Software")]
+        OtroSoftware = 11
     }
+
 }

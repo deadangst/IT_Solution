@@ -67,8 +67,8 @@ namespace src.Controllers.Api
 
                         try
                         {
-                            await _emailSender.SendEmailAsync(supportAgent.Email, "Confirm your email and Registration",
-                            $"Your email has been registered. With username: '{supportAgent.Email}' and temporary password: '{randomPassword}' . Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>");
+                            await _emailSender.SendEmailAsync(supportAgent.Email, "Confirme su correo electrónico y registro",
+                            $"Su correo electrónico ha sido registrado. Con nombre de usuario: '{supportAgent.Email}' y contraseña temporal: '{randomPassword}'. Por favor confirme su cuenta haciendo clic en este enlace: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>enlace</a>");
                         }
                         catch (Exception emailEx)
                         {
@@ -84,11 +84,11 @@ namespace src.Controllers.Api
                         _context.SupportAgent.Add(supportAgent);
                         await _context.SaveChangesAsync();
 
-                        return Json(new { success = true, message = "Add new data success." });
+                        return Json(new { success = true, message = "Se ha añadido un nuevo dato con éxito." });
                     }
                     else
                     {
-                        return Json(new { success = false, message = "UserManager CreateAsync Fail." });
+                        return Json(new { success = false, message = "Fallo en UserManager CreateAsync." });
                     }
                 }
                 catch (Exception ex)
@@ -104,7 +104,7 @@ namespace src.Controllers.Api
                 {
                     _context.Update(supportAgent);
                     await _context.SaveChangesAsync();
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Datos actualizados con éxito." });
                 }
                 catch (Exception ex)
                 {
@@ -141,7 +141,7 @@ namespace src.Controllers.Api
                 ApplicationUser appUser = await _userManager.FindByIdAsync(applicationUserId);
                 await _userManager.DeleteAsync(appUser);
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Eliminación exitosa." });
             }
             catch (Exception ex)
             {

@@ -11,8 +11,9 @@ namespace src.Services
     {
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
-            return emailSender.SendEmailAsync(email, "Confirm your email",
-                $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
+            return emailSender.SendEmailAsync(email, "Confirma tu correo electrónico",
+                $"Por favor, confirma tu cuenta haciendo clic en este enlace: <a href='{HtmlEncoder.Default.Encode(link)}'>enlace</a>");
         }
+
     }
 }

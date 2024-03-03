@@ -7,10 +7,11 @@ namespace src.Enum
 {
     public enum TaskPriority
     {
-        High = 1,
-        Highest = 2,
-        Low = 3, 
-        Lowest = 4,
+        Alta = 1,
+        MuyAlta = 2,
+        Baja = 3,
+        MuyBaja = 4,
         Normal = 5
     }
+
 }

@@ -23,7 +23,8 @@ $(document).ready(function () {
             }
         ],
         "language": {
-            "emptyTable": "no data found."
+            /*"emptyTable": "no data found."*/
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
         },
         "lengthChange": false,
     });
@@ -70,12 +71,12 @@ function SubmitAddEdit(form) {
 
 function Delete(id) {
     swal({
-        title: "Are you sure want to Delete?",
-        text: "You will not be able to restore the file!",
+        title: "¿Estás seguro de querer eliminar?",
+        text: "¡No podrás restaurar los datos!",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#dd4b39",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Sí, eliminar",
         closeOnConfirm: true
     }, function () {
         $.ajax({

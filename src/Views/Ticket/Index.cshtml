@@ -1,11 +1,11 @@
 ﻿@model src.Models.Organization
 @{
-    ViewData["Title"] = "Ticket";
+    ViewData["Title"] = "Tickets";
     Layout = "_LayoutAdminlte";
 }
 
-<!-- Content Header (Page header) -->
-<!-- Main content -->
+<!-- Encabezado del contenido -->
+<!-- Contenido principal -->
 <section class="content">
     <div class="row">
         <div class="col-lg-10">
@@ -25,21 +25,19 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-lg-2">
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEdit","Ticket", new { org = Model.organizationId })')"><i class="fa fa-plus"></i> Add New Ticket</a>
+                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEdit","Ticket", new { org = Model.organizationId })')"><i class="fa fa-plus"></i> Añadir nuevo ticket</a>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-<!-- /.content -->
-<!--modal placeholder-->
+<!-- /.contenido -->
+<!-- Placeholder del modal -->
 <div class="modal modal-primary fade" id="modalDefault">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -48,10 +46,7 @@
     </div>
 </div>
 
-
-
 @section Scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="~/js/views/ticket/index.js"></script>
 }
-

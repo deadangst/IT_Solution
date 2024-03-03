@@ -11,33 +11,34 @@ namespace src.Models
         public Organization()
         {
             this.thumbUrl = "/images/blank-building.png";
-            
         }
         public Guid organizationId { get; set; }
-        [Display(Name = "Organization Name")]
-        [Required]
-        [StringLength(100)]
+
+        [Display(Name = "Nombre de la organización")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
         public string organizationName { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Description")]
+
+        [StringLength(200, ErrorMessage = "La {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Descripción")]
         public string description { get; set; }
-        [StringLength(255)]
-        [Display(Name = "Thumb URL")]
+
+        [StringLength(255, ErrorMessage = "La {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "URL de la miniatura")]
         public string thumbUrl { get; set; }
 
-        //refer to Application User
+        // Referencia al Usuario de la Aplicación
         public string organizationOwnerId { get; set; }
 
-        //products
+        // Productos
         public ICollection<Product> products { get; set; }
-        //customers
+        // Clientes
         public ICollection<Customer> customers { get; set; }
-        //supportAgents
+        // Agentes de soporte
         public ICollection<SupportAgent> supportAgents { get; set; }
-        //supportEngineers
+        // Ingenieros de soporte
         public ICollection<SupportEngineer> supportEngineers { get; set; }
-        //organizations
+        // Tickets
         public ICollection<Ticket> tickets { get; set; }
-        
     }
 }

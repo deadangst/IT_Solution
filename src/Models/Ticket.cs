@@ -10,57 +10,61 @@ namespace src.Models
     {
         public Ticket()
         {
-            this.ticketStatus = Enum.TicketStatus.Unassigned;
-            this.ticketType = Enum.TicketType.Problem;
-            this.ticketPriority = Enum.TicketPriority.Low;
+            this.ticketStatus = Enum.TicketStatus.SinAsignar; // Sin asignar
+            this.ticketType = Enum.TicketType.Problema; // Problema
+            this.ticketPriority = Enum.TicketPriority.Baja; // Baja
         }
 
         public Guid ticketId { get; set; }
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Ticket Title")]
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Título del ticket")]
         public string ticketName { get; set; }
-        [Required]
-        [StringLength(200)]
-        [Display(Name = "Problem Description")]
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(200, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Descripción del problema")]
         public string description { get; set; }
 
-        [Display(Name = "Customer ID")]
+        [Display(Name = "ID del cliente")]
         public Guid customerId { get; set; }
 
-        [Display(Name = "Contact ID")]
+        [Display(Name = "ID de contacto")]
         public Guid contactId { get; set; }
 
-        [StringLength(100)]
-        [Display(Name = "Email")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Correo electrónico")]
         public string email { get; set; }
-        [StringLength(20)]
-        [Display(Name = "Phone")]
+
+        [StringLength(20, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Teléfono")]
         public string phone { get; set; }
 
-        [Display(Name = "Status")]
+        [Display(Name = "Estado")]
         public Enum.TicketStatus ticketStatus { get; set; }
 
-        [Display(Name = "Ticket Owner ID")]
+        [Display(Name = "ID del propietario del ticket")]
         public Guid supportAgentId { get; set; }
 
-        [Display(Name = "Support Enggineer ID")]
+        [Display(Name = "ID del ingeniero de soporte")]
         public Guid supportEngineerId { get; set; }
 
-        [Display(Name = "Product ID")]
+        [Display(Name = "ID del producto")]
         public Guid productId { get; set; }
 
-        [Display(Name = "Ticket Type")]
+        [Display(Name = "Tipo de ticket")]
         public Enum.TicketType ticketType { get; set; }
-        [Display(Name = "Ticket Priority")]
+
+        [Display(Name = "Prioridad del ticket")]
         public Enum.TicketPriority ticketPriority { get; set; }
-        [Display(Name = "Ticket Channel")]
+
+        [Display(Name = "Canal del ticket")]
         public Enum.TicketChannel ticketChannel { get; set; }
 
         public Guid organizationId { get; set; }
         public Organization organization { get; set; }
 
         public ICollection<TicketThread> ticketThreads { get; set; }
-
     }
 }

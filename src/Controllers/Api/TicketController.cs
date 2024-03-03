@@ -57,7 +57,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Add new data success." });
+                    return Json(new { success = true, message = "Se ha añadido un nuevo dato con éxito." });
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Datos actualizados con éxito." });
                 }
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Add new data success." });
+                    return Json(new { success = true, message = "Se ha añadido un nuevo dato con éxito." });
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Datos actualizados con éxito." });
                 }
             }
             catch (Exception ex)
@@ -135,7 +135,7 @@ namespace src.Controllers.Api
                 _context.Ticket.Remove(ticket);
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Eliminación exitosa." });
             }
             catch (Exception ex)
             {
@@ -166,7 +166,7 @@ namespace src.Controllers.Api
                 _context.Ticket.Remove(ticket);
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Eliminación exitosa." });
             }
             catch (Exception ex)
             {
@@ -197,12 +197,12 @@ namespace src.Controllers.Api
                     _context.TicketThread.Add(ticketThread);
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Add new data success." });
+                    return Json(new { success = true, message = "Se ha añadido un nuevo dato con éxito." });
                 }
 
                 else
                 {
-                    return Json(new { success = false, message = "Comment already exists" });
+                    return Json(new { success = false, message = "El Comentario ya existe" });
                 }
             }
             catch (Exception ex)

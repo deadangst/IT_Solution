@@ -8,15 +8,16 @@ namespace src.Models.AccountViewModels
 {
     public class LoginWith2faViewModel
     {
-        [Required]
-        [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(7, ErrorMessage = "El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.", MinimumLength = 6)]
         [DataType(DataType.Text)]
-        [Display(Name = "Authenticator code")]
+        [Display(Name = "Código del autenticador")]
         public string TwoFactorCode { get; set; }
 
-        [Display(Name = "Remember this machine")]
+        [Display(Name = "Recordar este dispositivo")]
         public bool RememberMachine { get; set; }
 
+        [Display(Name = "Recuérdame")]
         public bool RememberMe { get; set; }
     }
 }

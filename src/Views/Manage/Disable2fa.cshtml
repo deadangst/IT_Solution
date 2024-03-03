@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Disable two-factor authentication (2FA)";
+    ViewData["Title"] = "Desactivar la autenticación de dos factores (2FA)";
     ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
 }
 
@@ -8,17 +8,19 @@
 <div class="alert alert-warning" role="alert">
     <p>
         <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>This action only disables 2FA.</strong>
+        <strong>Esta acción solo desactiva el 2FA.</strong>
     </p>
     <p>
-        Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
-        used in an authenticator app you should <a asp-action="ResetAuthenticatorWarning">reset your
-        authenticator keys.</a>
+        Desactivar el 2FA no cambia las claves utilizadas en aplicaciones autenticadoras. Si deseas cambiar la clave
+        utilizada en una aplicación autenticadora, deberías <a asp-action="ResetAuthenticatorWarning">
+            restablecer tus
+            claves de autenticador.
+        </a>
     </p>
 </div>
 
 <div>
     <form asp-action="Disable2fa" method="post" class="form-group">
-        <button class="btn btn-danger" type="submit">Disable 2FA</button>
+        <button class="btn btn-danger" type="submit">Desactivar 2FA</button>
     </form>
 </div>

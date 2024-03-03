@@ -4,10 +4,10 @@
 }
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
         <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">Add Data</h4>
+    <h4 class="modal-title">Agregar Datos</h4>
 </div>
 <form onsubmit="return SubmitAddComment(this)">
     <div class="box-body">
@@ -26,12 +26,10 @@
     </div>
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Submit</button>
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Enviar</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
     </div>
 </form>
 <script>
     Ladda.bind('.btn', { timeout: 1000 });
 </script>
-
-

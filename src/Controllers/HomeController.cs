@@ -17,17 +17,18 @@ namespace src.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Página de descripción de tu aplicación.";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Página de contacto.";
 
             return View();
         }
+
 
         public IActionResult Error()
         {

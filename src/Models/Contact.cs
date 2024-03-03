@@ -14,32 +14,39 @@ namespace src.Models
         }
 
         public Guid contactId { get; set; }
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Full Name")]
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Nombre completo")]
         public string contactName { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Description")]
+
+        [StringLength(200, ErrorMessage = "La {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Descripción")]
         public string description { get; set; }
-        [StringLength(255)]
-        [Display(Name = "Thumb Url")]
+
+        [StringLength(255, ErrorMessage = "La {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "URL de imagen")]
         public string thumbUrl { get; set; }
 
-        [StringLength(100)]
-        [Required]
-        [Display(Name = "Email")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [Display(Name = "Correo electrónico")]
         public string email { get; set; }
-        [StringLength(100)]
-        [Display(Name = "Secondary Email")]
+
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Correo electrónico secundario")]
         public string secondaryEmail { get; set; }
-        [Display(Name = "Phone")]
-        [StringLength(20)]
+
+        [StringLength(20, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Teléfono")]
         public string phone { get; set; }
-        [Display(Name = "Website")]
-        [StringLength(100)]
+
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Sitio web")]
         public string website { get; set; }
-        [Display(Name = "Linkedin")]
-        [StringLength(100)]
+
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "LinkedIn")]
         public string linkedin { get; set; }
 
         public string applicationUserId { get; set; }
@@ -47,7 +54,7 @@ namespace src.Models
 
         public Guid customerId { get; set; }
         public Customer customer { get; set; }
-        
+
 
     }
 }

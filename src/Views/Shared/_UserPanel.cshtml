@@ -10,10 +10,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="../@appUser.ProfilePictureUrl" class="img-circle" alt="User Image">
+            <img src="../@appUser.ProfilePictureUrl" class="img-circle" alt="Imagen de Usuario">
         </div>
         <div class="pull-left info">
             <p>@appUser.FullName</p>
@@ -21,26 +20,21 @@
                 <i class="fa fa-circle text-success"></i>
                 @if (appUser.IsSuperAdmin)
                 {
-                    <span>Online as Super Admin</span>
-
+                    <span>En línea: <br> Super Administrador</span>
                 }
                 else if (appUser.IsCustomer)
                 {
-                    <span>Online as Customer Contact</span>
-
+                    <span>En línea: <br> Contacto de Cliente</span>
                 }
                 else if (appUser.IsSupportAgent)
                 {
-                    <span>Online as Support Agent</span>
-
+                    <span>En línea: <br> Agente de Soporte</span>
                 }
                 else if (appUser.IsSupportEngineer)
                 {
-                    <span>Online as Support Engineer</span>
-
+                    <span>En línea: <br> Ing. de Soporte</span>
                 }
             </a>
         </div>
     </div>
-
 }

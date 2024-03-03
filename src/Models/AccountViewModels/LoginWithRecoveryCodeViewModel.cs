@@ -10,7 +10,7 @@ namespace src.Models.AccountViewModels
     {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Código de Recuperación")]
             public string RecoveryCode { get; set; }
     }
 }

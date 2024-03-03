@@ -50,7 +50,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Add new data success." });
+                    return Json(new { success = true, message = "Nuevo dato agregado con éxito." });
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Dato editado con éxito." });
                 }
             }
             catch (Exception ex)
@@ -90,7 +90,7 @@ namespace src.Controllers.Api
                 _context.Product.Remove(product);
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Producto eliminado con éxito." });
             }
             catch (Exception ex)
             {

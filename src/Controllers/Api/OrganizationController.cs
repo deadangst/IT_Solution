@@ -49,7 +49,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Add new data success." });
+                    return Json(new { success = true, message = "Nuevos datos agregados con éxito." });
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Datos editados con éxito." });
                 }
             }
             catch (Exception ex)
@@ -89,7 +89,7 @@ namespace src.Controllers.Api
                 _context.Organization.Remove(organization);
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Eliminado con éxito." });
             }
             catch (Exception ex)
             {

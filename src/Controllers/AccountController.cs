@@ -72,17 +72,17 @@ namespace src.Controllers
                 bool isEmailActivated = await _dotnetdesk.IsAccountActivatedAsync(model.Email, _userManager);
                 if (!isEmailActivated)
                 {
-                    ModelState.AddModelError("", "You need to confirm your email.");
-                    ViewData["error"] = "You need to register first or You need to confirm your email.";
+                    ModelState.AddModelError("", "Necesita confirmar su correo electrónico.");
+                    ViewData["error"] = "Necesita registrarse primero o confirmar su correo electrónico.";
                     return View(model);
                 }
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                // Esto no cuenta los fallos de inicio de sesión para el bloqueo de la cuenta
+                // Para permitir que los fallos de contraseña desencadenen el bloqueo de la cuenta, establezca lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Usuario ha iniciado sesión.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -91,15 +91,16 @@ namespace src.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("La cuenta de usuario está bloqueada.");
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    ViewData["error"] = "Invalid login attempt";
+                    ModelState.AddModelError(string.Empty, "Intento de inicio de sesión inválido.");
+                    ViewData["error"] = "Intento de inicio de sesión inválido";
                     return View(model);
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -115,7 +116,7 @@ namespace src.Controllers
 
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             var model = new LoginWith2faViewModel { RememberMe = rememberMe };
@@ -137,29 +138,30 @@ namespace src.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"No se puede cargar el usuario con el ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
+            var codigoAutenticador = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+            var resultado = await _signInManager.TwoFactorAuthenticatorSignInAsync(codigoAutenticador, rememberMe, model.RememberMachine);
 
-            if (result.Succeeded)
+            if (resultado.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                _logger.LogInformation("Usuario con ID {UserId} ha iniciado sesión con autenticación de dos factores.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
-            else if (result.IsLockedOut)
+            else if (resultado.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _logger.LogWarning("Cuenta del usuario con ID {UserId} bloqueada.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
+                _logger.LogWarning("Código de autenticador inválido ingresado para el usuario con ID {UserId}.", user.Id);
+                ModelState.AddModelError(string.Empty, "Código de autenticador inválido.");
                 return View();
             }
+
         }
 
         [HttpGet]
@@ -170,7 +172,7 @@ namespace src.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             ViewData["ReturnUrl"] = returnUrl;
@@ -191,7 +193,7 @@ namespace src.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
@@ -200,20 +202,21 @@ namespace src.Controllers
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                _logger.LogInformation("Usuario con ID {UserId} ha iniciado sesión con un código de recuperación.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _logger.LogWarning("La cuenta del usuario con ID {UserId} está bloqueada.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                _logger.LogWarning("Se introdujo un código de recuperación inválido para el usuario con ID {UserId}", user.Id);
+                ModelState.AddModelError(string.Empty, "Se introdujo un código de recuperación inválido.");
                 return View();
             }
+
         }
 
         [HttpGet]
@@ -252,7 +255,7 @@ namespace src.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("El usuario ha creado una nueva cuenta con contraseña.");
 
                     //create default organization
                     _dotnetdesk.CreateDefaultOrganization(user.Id, _context).Wait();
@@ -263,7 +266,7 @@ namespace src.Controllers
 
                     //email should be confirmed then can logged in
                     //await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("El usuario ha creado una nueva cuenta con contraseña.");
                     return RedirectToAction(nameof(RegisterSuccess));
                 }
                 AddErrors(result);
@@ -278,7 +281,7 @@ namespace src.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("El usuario cerró sesión.");
             return Redirect(src.MVC.Pages.ConfigIndex.FullUrl);
         }
 
@@ -288,7 +291,7 @@ namespace src.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
+            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Cuenta", new { returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
         }
@@ -299,7 +302,7 @@ namespace src.Controllers
         {
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                ErrorMessage = $"Error del proveedor externo: {remoteError}";
                 return RedirectToAction(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -308,13 +311,14 @@ namespace src.Controllers
                 return RedirectToAction(nameof(Login));
             }
 
-            // Sign in the user with this external login provider if the user already has a login.
+            // Inicia sesión del usuario con este proveedor de inicio de sesión externo si el usuario ya tiene un inicio de sesión.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
+                _logger.LogInformation("Usuario inició sesión con el proveedor {Name}.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
+
             if (result.IsLockedOut)
             {
                 return RedirectToAction(nameof(Lockout));
@@ -336,11 +340,11 @@ namespace src.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Get the information about the user from the external login provider
+                // Obtener la información sobre el usuario del proveedor de inicio de sesión externo
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    throw new ApplicationException("Error loading external login information during confirmation.");
+                    throw new ApplicationException("Error al cargar la información de inicio de sesión externo durante la confirmación.");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
@@ -350,10 +354,11 @@ namespace src.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation("Usuario creó una cuenta usando el proveedor {Name}.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -372,7 +377,7 @@ namespace src.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+                throw new ApplicationException($"No se puede cargar el usuario con el ID '{userId}'.");
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
@@ -406,17 +411,18 @@ namespace src.Controllers
 
                 try
                 {
-                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                       $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                    await _emailSender.SendEmailAsync(model.Email, "Restablecer contraseña",
+                        $"Por favor, restablezca su contraseña haciendo clic aquí: <a href='{callbackUrl}'>enlace</a>");
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception details for debugging purposes
-                    // Consider logging the exception to a file or a database
-                    // For example: _logger.LogError(ex, "An error occurred while sending the password reset email.");
-                    // Redirect to an error page or return an error view if appropriate
-                    return View("Error"); // Replace "Error" with the name of your error view
+                    // Registrar los detalles de la excepción para fines de depuración
+                    // Considera registrar la excepción en un archivo o una base de datos
+                    // Por ejemplo: _logger.LogError(ex, "Se produjo un error al enviar el correo electrónico de restablecimiento de contraseña.");
+                    // Redirigir a una página de error o devolver una vista de error si es apropiado
+                    return View("Error"); // Reemplaza "Error" con el nombre de tu vista de error
                 }
+
 
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
@@ -438,7 +444,7 @@ namespace src.Controllers
         {
             if (code == null)
             {
-                throw new ApplicationException("A code must be supplied for password reset.");
+                throw new ApplicationException("Se debe proporcionar un código para restablecer la contraseña.");
             }
             var model = new ResetPasswordViewModel { Code = code };
             return View(model);

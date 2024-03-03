@@ -1,11 +1,11 @@
 ﻿@model src.Models.Organization
 @{
-    ViewData["Title"] = "Support Agent";
+    ViewData["Title"] = "Agente de Soporte";
     Layout = "_LayoutAdminlte";
 }
 
-<!-- Content Header (Page header) -->
-<!-- Main content -->
+<!-- Encabezado de Contenido (Encabezado de página) -->
+<!-- Contenido Principal -->
 <section class="content">
     <div class="row">
         <div class="col-lg-10">
@@ -17,7 +17,7 @@
                             <table id="grid" name="grid" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="col-md-11">Support Agent</th>
+                                        <th class="col-md-11">Agente de Soporte</th>
                                         <th class="col-md-1"></th>
                                     </tr>
                                 </thead>
@@ -31,15 +31,15 @@
         <div class="col-lg-2">
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEdit","SupportAgent", new { org = Model.organizationId })')"><i class="fa fa-plus"></i> Add New Agent</a>
+                    <a class="btn btn-success" style="margin-bottom:10px" onclick="ShowPopup('@Url.Action("AddEdit","SupportAgent", new { org = Model.organizationId })')"><i class="fa fa-plus"></i> Añadir Nuevo Agente</a>
                 </div>
             </div>
         </div>
     </div>
 
 </section>
-<!-- /.content -->
-<!--modal placeholder-->
+<!-- /.contenido -->
+<!--espacio reservado para modal-->
 <div class="modal modal-primary fade" id="modalDefault">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -54,4 +54,3 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="~/js/views/supportagent/index.js"></script>
 }
-

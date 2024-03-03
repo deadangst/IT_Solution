@@ -1,33 +1,33 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Registro";
     Layout = "_LayoutAdminlteBlank";
     string error = ViewData["Error"] != null ? ViewData["Error"].ToString() : "";
 }
 <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">Registrar una nueva membresía</p>
     <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
         <div class="form-group has-feedback">
             <label asp-for="FullName"></label>
-            <input asp-for="FullName" class="form-control" placeholder="Full Name" />
+            <input asp-for="FullName" class="form-control" placeholder="Nombre completo" />
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
             <span asp-validation-for="FullName" class="text-danger"></span>
         </div>
         <div class="form-group has-feedback">
             <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <input asp-for="Email" class="form-control" placeholder="Correo electrónico" />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group has-feedback">
             <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" placeholder="Password" />
+            <input asp-for="Password" class="form-control" placeholder="Contraseña" />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="form-group has-feedback">
             <label asp-for="ConfirmPassword"></label>
-            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirmar contraseña" />
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
         </div>
         <div class="row">
@@ -36,19 +36,19 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
             </div>
             <!-- /.col -->
         </div>
     </form>
-    
 
-    <a href="@src.MVC.Accounts.Login.FullUrl" class="text-center">I already have a membership</a>
+
+    <a href="@src.MVC.Accounts.Login.FullUrl" class="text-center">Ya tengo una membresía</a>
 </div>
 
 @if (!String.IsNullOrEmpty(error))
 {
-    <input type="hidden" id="error" value="@error"/>
+    <input type="hidden" id="error" value="@error" />
 }
 
 @section Scripts {

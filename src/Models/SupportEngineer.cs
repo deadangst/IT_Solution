@@ -9,14 +9,15 @@ namespace src.Models
     public class SupportEngineer
     {
         public Guid supportEngineerId { get; set; }
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Full Name")]
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Nombre completo")]
         public string supportEngineerName { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Email")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
+        [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
 
         public string applicationUserId { get; set; }

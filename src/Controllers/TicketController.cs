@@ -26,7 +26,7 @@ namespace src.Controllers
         {
             if (org == Guid.Empty)
             {
-                return NotFound();
+                return NotFound("Organización no encontrada.");
             }
             Organization organization = _context.Organization.Where(x => x.organizationId.Equals(org)).FirstOrDefault();
             ViewData["org"] = org;
@@ -37,7 +37,7 @@ namespace src.Controllers
         {
             if (cust == Guid.Empty)
             {
-                return NotFound();
+                return NotFound("Cliente no encontrado.");
             }
             Customer customer = _context.Customer.Where(x => x.customerId.Equals(cust)).FirstOrDefault();
             ViewData["cust"] = cust;
@@ -122,7 +122,7 @@ namespace src.Controllers
         {
             if(ticketId == Guid.Empty)
             {
-                return NotFound();
+                return NotFound("Ticket no encontrado.");
             }
             Ticket ticket = _context.Ticket.Where(x => x.ticketId.Equals(ticketId)).FirstOrDefault();
             Product product = _context.Product.Where(x => x.productId.Equals(ticket.productId)).FirstOrDefault();
@@ -141,7 +141,7 @@ namespace src.Controllers
         {
             if(ticketId  == Guid.Empty)
             {
-                return NotFound();
+                return NotFound("Ticket no encontrado para mostrar comentarios.");
             }
             TicketThread ticketThread = new TicketThread();
             ticketThread.ticketId = ticketId;

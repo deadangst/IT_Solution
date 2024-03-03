@@ -38,7 +38,7 @@ namespace src.Controllers.Api
 
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Edit data success.", appUser });
+                return Json(new { success = true, message = "Éxito al editar los datos.", appUser });
             }
             catch (Exception ex)
             {

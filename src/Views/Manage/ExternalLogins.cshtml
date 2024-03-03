@@ -1,13 +1,13 @@
 ﻿@model ExternalLoginsViewModel
 @{
-    ViewData["Title"] = "Manage your external logins";
+    ViewData["Title"] = "Gestiona tus inicios de sesión externos";
     ViewData.AddActivePage(ManageNavPages.ExternalLogins);
 }
 
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 @if (Model.CurrentLogins?.Count > 0)
 {
-    <h4>Registered Logins</h4>
+    <h4>Inicios de Sesión Registrados</h4>
     <table class="table">
         <tbody>
             @foreach (var login in Model.CurrentLogins)
@@ -21,7 +21,7 @@
                                 <div>
                                     <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                    <button type="submit" class="btn btn-default" title="Remove this @login.LoginProvider login from your account">Remove</button>
+                                    <button type="submit" class="btn btn-default" title="Eliminar este inicio de sesión de @login.LoginProvider de tu cuenta">Eliminar</button>
                                 </div>
                             </form>
                         }
@@ -37,14 +37,14 @@
 }
 @if (Model.OtherLogins?.Count > 0)
 {
-    <h4>Add another service to log in.</h4>
+    <h4>Agregar otro servicio para iniciar sesión.</h4>
     <hr />
     <form asp-action="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Iniciar sesión usando tu cuenta de @provider.DisplayName">@provider.DisplayName</button>
                 }
             </p>
         </div>

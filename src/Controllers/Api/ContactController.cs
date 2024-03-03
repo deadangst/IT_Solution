@@ -68,8 +68,8 @@ namespace src.Controllers.Api
 
                         try
                         {
-                            await _emailSender.SendEmailAsync(contact.email, "Confirm your email and Registration",
-                            $"Your email has been registered. With username:'{contact.email}' and temporary password:'{randomPassword.ToString()}'. Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>");
+                            await _emailSender.SendEmailAsync(contact.email, "Confirma tu correo y registro",
+                            $"Tu correo ha sido registrado. Con el nombre de usuario:'{contact.email}' y la contraseña temporal:'{randomPassword.ToString()}'. Por favor confirma tu cuenta haciendo clic en este enlace: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>enlace</a>");
 
                             // Log the email sending action
                             // For example: _logger.LogInformation($"Confirmation email sent to {contact.email}.");
@@ -88,11 +88,11 @@ namespace src.Controllers.Api
 
                         await _context.SaveChangesAsync();
 
-                        return Json(new { success = true, message = "Add new data success." });
+                        return Json(new { success = true, message = "Añadido nuevo dato exitosamente." });
                     }
                     else
                     {
-                        return Json(new { success = false, message = "UserManager CreateAsync Fail." });
+                        return Json(new { success = false, message = "Fallo el CreateAsync del UserManager." });
                     }
                 }
                 else
@@ -101,7 +101,7 @@ namespace src.Controllers.Api
 
                     await _context.SaveChangesAsync();
 
-                    return Json(new { success = true, message = "Edit data success." });
+                    return Json(new { success = true, message = "Datos editados exitosamente." });
                 }
             }
             catch (Exception ex)
@@ -133,7 +133,7 @@ namespace src.Controllers.Api
                 await _context.SaveChangesAsync();
                 
 
-                return Json(new { success = true, message = "Delete success." });
+                return Json(new { success = true, message = "Eliminado con éxito." });
             }
             catch (Exception ex)
             {
