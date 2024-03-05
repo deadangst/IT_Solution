@@ -9,9 +9,9 @@ namespace src.Enum
     {
         Other = 0,
         Teléfono = 1,
-        Twitter = 2,
+        TicketBot = 2,
         CorreoElectrónico = 3,
-        Facebook = 4,
+        Escalacion = 4,
         Web = 5,
         Chat = 6,
         Foro = 7

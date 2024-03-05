@@ -9,11 +9,11 @@ namespace src.Enum
     public enum CustomerType
     {
         Other = 0,
-        [Display(Name = "Pequeña Empresa")]
-        SmallBusiness = 1,
-        Enterprise = 2,
-        Gobierno = 3,
-        ONG = 4,
+        [Display(Name = "Desarrollo")]
+        Desarrollo = 1,
+        Arte = 2,
+        Planillas = 3,
+        HR = 4,
         Interno = 5
     }
 

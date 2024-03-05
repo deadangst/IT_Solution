@@ -30,7 +30,7 @@ namespace src.Models
         [Display(Name = "ID del cliente")]
         public Guid customerId { get; set; }
 
-        [Display(Name = "ID de contacto")]
+        [Display(Name = "Colaborador")]
         public Guid contactId { get; set; }
 
         [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
@@ -47,10 +47,10 @@ namespace src.Models
         [Display(Name = "ID del propietario del ticket")]
         public Guid supportAgentId { get; set; }
 
-        [Display(Name = "ID del ingeniero de soporte")]
+        [Display(Name = "Ingeniero de soporte")]
         public Guid supportEngineerId { get; set; }
 
-        [Display(Name = "ID del producto")]
+        [Display(Name = "Producto")]
         public Guid productId { get; set; }
 
         [Display(Name = "Tipo de ticket")]

@@ -16,10 +16,10 @@ namespace src.Enum
         Impresora = 5,
         [Display(Name = "Otro Hardware")]
         OtroHardware = 6,
-        Windows = 7,
-        Word = 8,
-        Excel = 9,
-        Powerpoint = 10,
+        Office = 7,
+        Correo = 8,
+        VPN = 9,
+        Red = 10,
         [Display(Name = "Otro Software")]
         OtroSoftware = 11
     }
