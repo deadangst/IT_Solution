@@ -134,7 +134,7 @@
                             <li class="header">NAVEGACIÓN PRINCIPAL</li>
                             <li class="@Html.IsSelected(controller: "Customer")">
                                 <a href="@Url.Action("Index", "Customer", new { org = org })">
-                                    <i class="fa fa-th"></i> <span>Clientes</span>
+                                    <i class="fa fa-th"></i> <span>Supervisores</span>
                                 </a>
                             </li>
                             <li class="@Html.IsSelected(controller: "Product")">
@@ -160,7 +160,7 @@
                         }
                         @if (appUser.IsCustomer)
                         {
-                            <li class="header">NAVEGACIÓN DEL CLIENTE</li>
+                            <li class="header">NAVEGACIÓN DEL SUPERVISOR</li>
                             <li class="@Html.IsSelected(controller: "Ticket")">
                                 <a href="@Url.Action("Customer", "Ticket", new { cust = cust })">
                                     <i class="fa fa-th"></i> <span>Ticket</span>

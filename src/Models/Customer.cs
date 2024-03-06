@@ -16,7 +16,7 @@ namespace src.Models
 
         public Guid customerId { get; set; }
 
-        [Display(Name = "Nombre del cliente")]
+        [Display(Name = "Nombre del Supervisor")]
         [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres de longitud.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string customerName { get; set; }
@@ -29,8 +29,8 @@ namespace src.Models
         [Display(Name = "URL de miniatura")]
         public string thumbUrl { get; set; }
 
-        [Display(Name = "Tipo de cliente")]
-        public Enum.CustomerType customerType { get; set; } // Considera la traducción de los tipos de clientes si es necesario
+        [Display(Name = "Tipo de Supervisor")]
+        public Enum.CustomerType customerType { get; set; } // Considera la traducción de los tipos de Supervisores si es necesario
 
         // Dirección
         [Display(Name = "Dirección completa")]

@@ -37,7 +37,7 @@ namespace src.Controllers
         {
             if (cust == Guid.Empty)
             {
-                return NotFound("Cliente no encontrado.");
+                return NotFound("Supervisor no encontrado.");
             }
             Customer customer = _context.Customer.Where(x => x.customerId.Equals(cust)).FirstOrDefault();
             ViewData["cust"] = cust;
@@ -120,7 +120,7 @@ namespace src.Controllers
 
         public IActionResult Detail(Guid ticketId)
         {
-            if(ticketId == Guid.Empty)
+            if (ticketId == Guid.Empty)
             {
                 return NotFound("Ticket no encontrado.");
             }
@@ -130,6 +130,7 @@ namespace src.Controllers
             SupportEngineer engineer = _context.SupportEngineer.Where(x => x.supportEngineerId.Equals(ticket.supportEngineerId)).FirstOrDefault();
             Contact contact = _context.Contact.Where(x => x.contactId.Equals(ticket.contactId)).FirstOrDefault();
             ViewData["ticket"] = ticket.ticketId;
+            ViewData["org"] = ticket.organizationId;
             ViewBag.productName = product.productName;
             ViewBag.supportAgentName = agent.supportAgentName;
             ViewBag.supportEngineerName = engineer.supportEngineerName;
@@ -139,7 +140,7 @@ namespace src.Controllers
 
         public IActionResult AddComment(Guid ticketId)
         {
-            if(ticketId  == Guid.Empty)
+            if (ticketId == Guid.Empty)
             {
                 return NotFound("Ticket no encontrado para mostrar comentarios.");
             }
@@ -151,7 +152,7 @@ namespace src.Controllers
 
         public IActionResult ShowComments(Guid ticketId)
         {
-            if(ticketId == Guid.Empty)
+            if (ticketId == Guid.Empty)
             {
                 return NotFound();
             }

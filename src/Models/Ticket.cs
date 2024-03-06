@@ -27,7 +27,7 @@ namespace src.Models
         [Display(Name = "Descripción del problema")]
         public string description { get; set; }
 
-        [Display(Name = "ID del cliente")]
+        [Display(Name = "ID del Supervisor")]
         public Guid customerId { get; set; }
 
         [Display(Name = "Colaborador")]

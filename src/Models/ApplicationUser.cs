@@ -25,7 +25,7 @@ namespace src.Models
         [Display(Name = "Es SuperAdmin")]
         public bool IsSuperAdmin { get; set; } = false;
 
-        [Display(Name = "Es Cliente")]
+        [Display(Name = "Es Supervisor")]
         public bool IsCustomer { get; set; } = false;
 
         [Display(Name = "Es Agente de Soporte")]

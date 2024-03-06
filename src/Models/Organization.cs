@@ -32,7 +32,7 @@ namespace src.Models
 
         // Productos
         public ICollection<Product> products { get; set; }
-        // Clientes
+        // Supervisores
         public ICollection<Customer> customers { get; set; }
         // Agentes de soporte
         public ICollection<SupportAgent> supportAgents { get; set; }
